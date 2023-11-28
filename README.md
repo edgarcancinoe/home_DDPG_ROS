@@ -1,7 +1,7 @@
-# xArm6_DDPG_ROS
+# home_DDPG_ROS
 
 ## General Description
-Application of a Deep Deterministic Policy Gradient (DDPG) model with Hindsight Experience Replay to a xArm6 robotic arm in ROS noetic.
+Application of a Deep Deterministic Policy Gradient (DDPG) model with Hindsight Experience Replay to a xArm6 robotic arm mounted in [Dashgo robot by Roborregos Robotics team at Tec. de Monterrey](https://github.com/RoBorregos/robocup-home) in ROS noetic.
 
 The Reinforcement Learning model was trained in a [Gym environment for the UFactory xArm6 robot](https://github.com/julio-design/xArm6-Gym-Env), 
 but a different [DDPG + HER implementation](https://github.com/edgarcancinoe/xarm6_DDPG_HER) was used, based in the original enviroment's code and [OpenAI baseline's HER implementation](https://github.com/openai/baselines/tree/master/baselines/her).
@@ -30,20 +30,25 @@ The file _util.py_ contains functions used by the _movement_generator_ node, and
 The employed model generates a path to follow from a starting and target position pair. It simulates the trajectory utilizing MujocoPy and stores every single position of the arm's
 end effector from the start of the simulation, to the final target position.
 
-Also, becasue a side goal of this implementation was to ensure the arm's end effector remains stable throughout its whole trajectory, once the full path is computed by the model, the positions are used as
-waypoints to create a Cartesian Path using the *compute_cartesian_path()* function of the [MoveIt package for the xArm6](https://github.com/xArm-Developer/xarm_ros). 
-
+Once the full path is computed, there are two options to reach the desired goal.
+1. The stored positions are used as waypoints to create a Cartesian Path using the *compute_cartesian_path()* function of the [MoveIt package for the xArm6](https://github.com/xArm-Developer/xarm_ros). 
+2. Each joint configuration recorded for every time step can be sent to the robotic arm to replicate the motion that successfully resulted in reaching the desired target. Because a side goal of this implementation is to ensure the arm's end effector remains stable throughout its whole trajectory, this is the recommended strategy.
+   
 ### Usage
 To run the code, one launch and two nodes shall be run consecutively:
 1. Run the RViz simulation node for the xAm6:
    ```
    roslaunch xarm_planner xarm_planner_rviz_sim.launch robot_dof:=6 robot_type:=xarm add_gripper:=true
    ```
-2. In another terminal, run the _target_generator_ node. This node generates random position targets for the robot to reach.
+   Or if using the Roborregos Dashgo robot:
+   ```
+   roslaunch dashgo_moveit_config demo.launch
+   ```
+3. In another terminal, run the _target_generator_ node. This node generates random position targets for the robot to reach.
    ```
    rosrun steady_trajectory target_generator.py
    ```
-3. Open a third terminal and run the _movement_generator_ node. This node will position the arm into its home starting position and then will listen for targets.
+4. Open a third terminal and run the _movement_generator_ node. This node will position the arm into its home starting position and then will listen for targets.
    ```
    rosrun steady_trajectory movement_generator.py
    ```
@@ -73,5 +78,5 @@ Cartesian path following position waypoints             |  Consecutively setting
 - https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html
 - https://github.com/julio-design/xArm6-Gym-Env
 - https://github.com/edgarcancinoe/xarm6_DDPG_HER/tree/master
-
+- https://github.com/RoBorregos/robocup-home
 ---
