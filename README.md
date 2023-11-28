@@ -1,4 +1,4 @@
-# home_DDPG_ROS
+# xArm6_DDPG_ROS
 
 ## General Description
 Application of a Deep Deterministic Policy Gradient (DDPG) model with Hindsight Experience Replay to a xArm6 robotic arm in ROS noetic.
@@ -34,10 +34,8 @@ Also, becasue a side goal of this implementation was to ensure the arm's end eff
 waypoints to create a Cartesian Path using the *compute_cartesian_path()* function of the [MoveIt package for the xArm6](https://github.com/xArm-Developer/xarm_ros). 
 
 ### Usage
-First, both [MoveIt](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html) and the [xArm developer package](https://github.com/xArm-Developer/xarm_ros) must be installed in the workspace.
-
-Then, to run the code, one launch and two nodes shall be run consecutively:
-1. Run the RViz simulation node for the xArm6:
+To run the code, one launch and two nodes shall be run consecutively:
+1. Run the RViz simulation node for the xAm6:
    ```
    roslaunch xarm_planner xarm_planner_rviz_sim.launch robot_dof:=6 robot_type:=xarm add_gripper:=true
    ```
