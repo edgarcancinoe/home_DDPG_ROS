@@ -6,8 +6,8 @@ Application of a Deep Deterministic Policy Gradient (DDPG) model with Hindsight 
 The Reinforcement Learning model was trained in a [Gym environment for the UFactory xArm6 robot](https://github.com/julio-design/xArm6-Gym-Env), 
 but a different [DDPG + HER implementation](https://github.com/edgarcancinoe/xarm6_DDPG_HER) was used, based in the original enviroment's code and [OpenAI baseline's HER implementation](https://github.com/openai/baselines/tree/master/baselines/her).
 
-##### Note
-This repository contains a specific implementation to be used in Roborrego's Dashgo robot. For the general implementation for xArm6, visit [this repo](https://https://github.com/edgarcancinoe/xArm6_DDPG_ROS).
+##### Check original repository.
+This repository contains a specific implementation to be used in Roborrego's Dashgo robot. For a general xArm6 implementation, visit [this repo](https://https://github.com/edgarcancinoe/xArm6_DDPG_ROS).
 
 #### Basic functionality
 The ROS package _steady_trajectory_ demonstrates the use of a keras DDPG model (.pt) which computes a trajectory to get the xArm6's end effector from a starting position to and target, final position. The model outputs the necessary change in position for three dimensions (x,y,z) while mantaining a constant end effector's rotation.
