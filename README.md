@@ -55,9 +55,9 @@ To run the code, one launch and two nodes shall be run consecutively:
 
 ## Results
 
-Cartesian path following position waypoints             |  Consecutively setting joint pose
-:-------------------------:|:-------------------------:
-![](https://github.com/edgarcancinoe/xArm6_DDPG_ROS/blob/master/results.gif) |   ![](https://github.com/edgarcancinoe/xArm6_DDPG_ROS/blob/master/jointsReachROS.gif)
+Dasgho robot following computed trajectory by joint strategy
+:-------------------------:
+![](https://github.com/edgarcancinoe/home_DDPG_ROS/blob/main/home_DDPG_ROS_results.gif) |
 
 
 ## Requirements
