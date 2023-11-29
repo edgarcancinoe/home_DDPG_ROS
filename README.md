@@ -40,7 +40,7 @@ To run the code, one launch and two nodes shall be run consecutively:
    ```
    roslaunch xarm_planner xarm_planner_rviz_sim.launch robot_dof:=6 robot_type:=xarm add_gripper:=true
    ```
-   Or if using the Roborregos Dashgo robot:
+   Or, if using the Roborregos Dashgo robot:
    ```
    roslaunch dashgo_moveit_config demo.launch
    ```
