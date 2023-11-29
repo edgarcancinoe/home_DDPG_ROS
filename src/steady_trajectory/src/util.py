@@ -23,7 +23,7 @@ def set_starting_position(arm) -> None:
     joint_goal = arm.get_current_joint_values()
     # joint_goal = [-math.pi/2, 0, 0, -math.pi/2, math.pi/2, math.pi/4]
     joint_goal = [0, 0, 0, -math.pi/2, math.pi/2, math.pi/4]
-    joint_goal = [-math.pi/2, -math.pi/6, 0, -math.pi, math.pi/3, math.pi/4]
+    # joint_goal = [-math.pi/2, -math.pi/6, 0, -math.pi, math.pi/3, math.pi/4]
 
     arm.go(joint_goal, wait=True)
     arm.stop()
@@ -98,10 +98,11 @@ def move_xarm6(planner, goal, arm, client, strategy, z_offset) -> None:
 
             # joint_states[:,3] -= math.pi/2
             joint_states[:,8] += math.pi/4
-            for t in range (0, n, 4):
+            step = 6
+            for t in range (0, n, step):
                 arm.go(joint_states[t][3:-2], wait=True)
                 # time.sleep(1)
-                if t >= n-4:
+                if t >= n-step:
                     arm.go(joint_states[n-1][3:-2], wait = True)
                     # time.sleep(1)
             

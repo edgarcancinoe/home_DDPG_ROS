@@ -85,7 +85,8 @@ class TrajectoryPlanner():
             joint_states[t] = self._safe_joints(new_obs['joints'])
             counter += 1
 
-            if done:
+            if done:   
+                self.render()
                 break
             else:
                 obs = new_obs['observation']
@@ -102,12 +103,12 @@ class TrajectoryPlanner():
 
     def _safe_joints(self, joints):
         
-        joints[3] = np.clip(joints[3], -3.08, 3.08) # [-178, 178]
-        joints[4] = np.clip(joints[4], -2.05, 2.07) # [-118, 120]
-        joints[5] = np.clip(joints[5], -3.08, 0.18) # [-178, 11]
-        joints[6] = np.clip(joints[6], -3.08, 3.08) # [-178, 178]
-        joints[7] = np.clip(joints[7], -3.08, 3.08) # [-178, 178]
-        joints[8] = np.clip(joints[8], -3.08, 3.08) # [-178, 178]
+        # joints[3] = np.clip(joints[3], -3.08, 3.08) # [-178, 178]
+        # joints[4] = np.clip(joints[4], -2.05, 2.07) # [-118, 120]
+        # joints[5] = np.clip(joints[5], -3.08, 0.18) # [-178, 11]
+        # joints[6] = np.clip(joints[6], -3.08, 3.08) # [-178, 178]
+        # joints[7] = np.clip(joints[7], -3.08, 3.08) # [-178, 178]
+        # joints[8] = np.clip(joints[8], -3.08, 3.08) # [-178, 178]
         
         return joints
     

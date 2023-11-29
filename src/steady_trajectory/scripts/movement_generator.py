@@ -62,7 +62,7 @@ initial_qpos = {
             'robot0:shoulder_lift_joint': 0.,
             'robot0:elbow_flex_joint': 0.,
             'robot0:forearm_roll_joint': 0.,
-            'robot0:wrist_flex_joint': -1.5707329355919546,
+            'robot0:wrist_flex_joint': 0.,
             'robot0:wrist_roll_joint': 0.,
             'robot0:left_finger_joint': 0.0,
             'robot0:right_finger_joint': 0.0
@@ -100,7 +100,7 @@ def target_callback(msg) -> None:
     p = PoseStamped()
     p.header.frame_id = robot.get_planning_frame()
     p.pose.position.x = msg.position.y 
-    p.pose.position.y = -msg.position.x - 0.15
+    p.pose.position.y = -msg.position.x - 0.02
     p.pose.position.z = msg.position.z  + z_offset  # Dashgo's box height offset
 
     scene.add_box("Box", p, size=(0.012, 0.012, 0.012))
